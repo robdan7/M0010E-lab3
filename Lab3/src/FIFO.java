@@ -15,11 +15,19 @@ public class FIFO implements Queue {
 		f.add(2);
 		f.add(3);
 
-		System.out.println(f.first());
-		f.removeFirst();
-		System.out.println(f.first());
-		f.removeFirst();
-		System.out.println(f.first());
+		FIFO f2 = new FIFO();
+		f2.add(1);
+		f2.add(2);
+		f2.add(3);
+
+		System.out.println(f.equals(f2));
+
+		/*
+		 * System.out.println(f.first()); f.removeFirst();
+		 * System.out.println(f.first()); f.removeFirst();
+		 * System.out.println(f.first());
+		 */
+		System.out.println(f2.toString());
 	}
 
 	@Override
@@ -66,17 +74,20 @@ public class FIFO implements Queue {
 	}
 
 	/**
-	 * Two objects are equal if and only if they are both instances of {@link FIFO},
+	 * Two objects are equal if and only if they are both instances of {@link FIFO}
 	 * and have the same elements in order.
 	 */
 	@Override
 	public boolean equals(Object o) {
-		if (this.fifo.size() != ((FIFO) o).size()) {
+
+		// Check if o is NOT a queue and if the size is different.
+		if (!(o instanceof FIFO) || this.fifo.size() != ((FIFO) o).size()) {
 			return false;
 		}
 
+		// o is a queue with the same size. Check if the objects are equal.
 		for (int i = 0; i < this.fifo.size(); i++) {
-			if (this.fifo.get(i) != ((FIFO) o).get(i)) {
+			if (!this.fifo.get(i).equals(((FIFO) o).get(i))) {
 				return false;
 			}
 		}
@@ -86,11 +97,18 @@ public class FIFO implements Queue {
 
 	@Override
 	public String toString() {
-		String result = "";
+		String result = "Queue: ";
 
-		for (Object o : this.fifo) {
-			result += o.toString();
+		if (this.fifo.size() == 0) {
+			return result;
 		}
+
+		// This adds every element within "()" without a space at the end. Take that lab
+		// instructions!
+		for (int i = 0; i < this.fifo.size() - 1; i++) {
+			result += "(" + String.valueOf(this.fifo.get(i)) + ") ";
+		}
+		result += "(" + this.fifo.get(this.fifo.size() - 1) + ")";
 
 		return result;
 	}
