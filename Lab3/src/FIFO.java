@@ -48,10 +48,9 @@ public class FIFO implements Queue {
 	}
 
 	/**
-	 * <p>
 	 * This method returns <b>true</b> if, and only if, the size of this queue is 0.
 	 * Otherwise, <b>false</b> is returned.
-	 * </p>
+	 * 
 	 */
 	@Override
 	public boolean isEmpty() {
@@ -121,10 +120,8 @@ public class FIFO implements Queue {
 	}
 
 	/**
-	 * <p>
 	 * This method returns a string beginning with <b>"Queue: "</b> followed by the
 	 * following, for each element in the queue.
-	 * </p>
 	 * 
 	 * @return A string.
 	 */
