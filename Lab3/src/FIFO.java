@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+/**
+ * 
+ * @author Robin Danielsson
+ *
+ */
+
 public class FIFO implements Queue {
 
 	private ArrayList<Object> fifo;
@@ -10,26 +16,11 @@ public class FIFO implements Queue {
 	}
 
 	public static void main(String[] args) {
-		FIFO f = new FIFO();
-		f.add(1);
-		f.add(2);
-		f.add(3);
-
-		FIFO f2 = new FIFO();
-		f2.add(1);
-		f2.add(2);
-		f2.add(3);
-
-		System.out.println(f.equals(f2));
-
-		/*
-		 * System.out.println(f.first()); f.removeFirst();
-		 * System.out.println(f.first()); f.removeFirst();
-		 * System.out.println(f.first());
-		 */
-		System.out.println(f2.toString());
+		String[] file = {"graph.txt"};
 		
-		BFTmain.main(new String[] {"graph.txt"});
+		FIFOmain.main(file);
+		
+		BFTmain.main(file);
 	}
 
 	@Override
@@ -80,21 +71,32 @@ public class FIFO implements Queue {
 	 * and have the same elements in order.
 	 */
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(Object o) throws ClassCastException {
+		boolean result = true;
+		// o must be an instance of FIFO.
+		if (!(o instanceof FIFO)) {
+			throw new ClassCastException();
+		}
 
-		// Check if o is NOT a queue and if the size is different.
-		if (!(o instanceof FIFO) || this.fifo.size() != ((FIFO) o).size()) {
+		// Check if the size is different.
+		if (this.fifo.size() != ((FIFO) o).size()) {
 			return false;
 		}
 
 		// o is a queue with the same size. Check if the objects are equal.
-		for (int i = 0; i < this.fifo.size(); i++) {
-			if (!this.fifo.get(i).equals(((FIFO) o).get(i))) {
-				return false;
+		loop: for (int i = 0; i < this.fifo.size(); i++) {
+			if (this.fifo.get(i) == null || ((FIFO)o).get(i) == null) {
+				if (this.fifo.get(i) != ((FIFO)o).get(i)) {
+					result = false;
+					break loop;
+				}
+			} else if (!this.fifo.get(i).equals(((FIFO) o).get(i))) {
+				result = false;
+				break loop;
 			}
 		}
 
-		return true;
+		return result;
 	}
 
 	@Override
@@ -104,13 +106,10 @@ public class FIFO implements Queue {
 		if (this.fifo.size() == 0) {
 			return result;
 		}
-
-		// This adds every element within "()" without a space at the end. Take that lab
-		// instructions!
-		for (int i = 0; i < this.fifo.size() - 1; i++) {
-			result += "(" + String.valueOf(this.fifo.get(i)) + ") ";
+		
+		for (Object o : this.fifo) {
+			result += "(" + String.valueOf(o) + ") ";
 		}
-		result += "(" + this.fifo.get(this.fifo.size() - 1) + ")";
 
 		return result;
 	}
