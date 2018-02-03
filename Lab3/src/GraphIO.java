@@ -30,7 +30,7 @@ public class GraphIO {
 			g.addNode(scan.nextInt(), scan.nextInt(), scan.nextInt());
 		}
 		
-		for (int i = 0; i < lines; i++) {
+		while(scan.hasNextLine()) {
 			g.addEdge(scan.nextInt(), scan.nextInt(), scan.nextInt());
 		}
 		

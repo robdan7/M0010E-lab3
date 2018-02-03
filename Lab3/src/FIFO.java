@@ -17,7 +17,7 @@ public class FIFO implements Queue {
 	}
 
 	public static void main(String[] args) {
-		String[] file = { "graph.txt" };
+		String[] file = { "myGraph.txt" };
 
 		FIFOmain.main(file);
 
