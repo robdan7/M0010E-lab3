@@ -33,6 +33,8 @@ public class GraphIO {
 		for (int i = 0; i < lines; i++) {
 			g.addEdge(scan.nextInt(), scan.nextInt(), scan.nextInt());
 		}
+		
+		scan.close();
 	}
 
 }
