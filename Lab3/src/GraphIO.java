@@ -3,13 +3,25 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * 
+ * @author Robin Danielsson
+ *
+ */
+
 public class GraphIO {
 	
+	/**
+	 * Read nodes and edges to a graph.
+	 * @param g The graph to store everything in.
+	 * @param filename String with filename.
+	 * @throws IOException
+	 */
 	public static void readFile(Graph g, String filename) throws IOException {
 		Scanner scan;
 		try {
-			scan = new Scanner(new File("graph.txt"));
-		} catch (FileNotFoundException e) {
+			scan = new Scanner(new File(filename));
+		} catch (IOException e) {
 			throw new IOException("File not found!");
 		}
 		
