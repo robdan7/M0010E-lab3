@@ -28,6 +28,8 @@ public class FIFO implements Queue {
 		 * System.out.println(f.first());
 		 */
 		System.out.println(f2.toString());
+		
+		BFTmain.main(new String[] {"graph.txt"});
 	}
 
 	@Override
