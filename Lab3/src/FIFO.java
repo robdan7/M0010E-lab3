@@ -101,18 +101,8 @@ public class FIFO implements Queue {
 
 		// o is a queue with the same size. Check if all objects are equal.
 		loop: for (int i = 0; i < this.fifo.size(); i++) {
-			Object o2 = ((FIFO) o).first();
-			Object o1 = this.first();
-
-			/*
-			 * The ArrayList in o is private and no get() method is defined. My workaround
-			 * is to move the first element to the end of the queue. When the iteration is
-			 * complete the order of all objects will be restored.
-			 */
-			((FIFO) o).removeFirst();
-			((FIFO) o).add(o2);
-			this.removeFirst();
-			this.add(o1);
+			Object o2 = ((FIFO) o).fifo.get(i);
+			Object o1 = this.fifo.get(i);
 
 			if (!result) { // The lists are already different. Continue.
 				continue loop;
