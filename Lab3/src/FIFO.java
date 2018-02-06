@@ -104,16 +104,14 @@ public class FIFO implements Queue {
 			Object o2 = ((FIFO) o).fifo.get(i);
 			Object o1 = this.fifo.get(i);
 
-			if (!result) { // The lists are already different. Continue.
-				continue loop;
-			}
-
 			if (o1 == null || o2 == null) {
 				if (o1 != o2) {
 					result = false;
+					break loop;
 				}
 			} else if (!o1.equals(o2)) {
 				result = false;
+				break loop;
 			}
 		}
 
